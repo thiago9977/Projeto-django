@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from utils.recipes.factory import make_recipe
 
 def home(request):
-    return HttpResponse(render(request, 'recipes/pages/home.html',context={'name': 'Bolo'}))
+    return render(request, 'recipes/pages/home.html',context={'recipes': [make_recipe()for _ in range(10)]})
 
 def recipes(request, id):
-    return HttpResponse(render(request, 'recipes/pages/home.html',context={'name': 'Bolo'}))
+    return render(request, 'recipes/pages/recipe-views.html',context={'recipe': [make_recipe()]})
+
 
